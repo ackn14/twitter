@@ -82,7 +82,7 @@
                                     <a href="/twitter/show?id={{ $tweet->id }}">
                                     <div class="image">
                                         <a href=""></a>
-                                        <img src="{{ ($tweet->user->profile->image_path) }}">
+                                        <img src="{{ asset('storage/image/' . $tweet->user->profile->image_path) }}">
                                     </div>
                                     </a>
                                     
