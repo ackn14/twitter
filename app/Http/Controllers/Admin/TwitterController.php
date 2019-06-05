@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 
-
+//画像アップロード先をS3に指定
+use Storage;
 use App\Twitters;
 use App\User;
 
@@ -42,7 +43,7 @@ class TwitterController extends Controller
         }
         unset($form['_token']);
         unset($form['image']);
-        
+        dd($twitter->image_path);
         //UserのidをTwittersのuser_idに代入
         $twitter->user_id = Auth::id();
         

@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Profiles;
 use App\User;
-//画像アップロード先をS3に指定
-use Storage;
 
 class ProfileController extends Controller
 {
