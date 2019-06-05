@@ -50,7 +50,7 @@
                                         <div class="image">
                                             @if ($post->profile != null)
                                               @if ($post->profile->image_path)
-                                                  <img src="{{ asset('storage/image/' . $post->profile->image_path) }}">
+                                                  <img src="{{ ($post->profile->image_path) }}">
                                               @endif
                                             @endif
                                         </div>

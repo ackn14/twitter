@@ -26,9 +26,17 @@ class TwitterController extends Controller
         
       // フォームから画像が送信されてきたら、保存して、$twitter->image_path に画像のパスを保存する
         if(isset($form['image'])){
-            $path = $request->file('image')->store('public/image');
-            //画像が保存されてるパス(ここではpublic/image)を保存
-            $twitter->image_path = basename($path);
+            
+            //↓↓画像のアップロード先がローカル環境の場合↓↓
+            // $path = $request->file('image')->store('public/image');
+            // //画像が保存されてるパス(ここではpublic/image)を保存
+            // $twitter->image_path = basename($path);
+            //↑↑画像のアップロード先がローカル環境の場合↑↑
+            
+            //画像のアップロード先がS3の場合
+            $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            $twitter->image_path = Storage::disk('s3')->url($path);
+            
         } else {
             $twitter->image_path = null;
         }
@@ -59,7 +67,6 @@ class TwitterController extends Controller
               $posts = Twitters::all();
           }
         
-        // 単体テスト用
         // kokokara debug
         // $posts = User::all();
         // foreach ($posts as $user) {
@@ -100,8 +107,16 @@ class TwitterController extends Controller
         if($request->remove == 'true'){
             $form['image_path'] = null;
         } elseif($request->file('image')){
-            $path = $request->file('image')->store('public/image');
-            $form['image_path'] = basename($path);
+            
+            //↓↓画像のアップロード先がローカル環境の場合↓↓
+            // $path = $request->file('image')->store('public/image');
+            // $form['image_path'] = basename($path);
+            //↑↑画像のアップロード先がローカル環境の場合↑↑
+            
+            //画像のアップロード先がS3の場合
+            $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            $tweet->image_path = Storage::disk('s3')->url($path);
+            
         } else {
             $form['image_path'] = $tweet->image_path;
         }        

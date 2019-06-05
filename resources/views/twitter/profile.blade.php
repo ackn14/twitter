@@ -9,7 +9,7 @@
             <h3>プロフィール情報</h3>
             <div class="profile">
                 <div class="image">
-                    <img src="{{ asset('storage/image/' . $user->profile->image_path) }}">
+                    <img src="{{ ($user->profile->image_path) }}">
                 </div>
                 
                 <div class="name">
@@ -48,7 +48,7 @@
                                 <!--アイコン-->
                                 <div class="image">
                                     <a href="/profile?id={{ $tweet->id }}"></a>
-                                    <img src="{{ asset('storage/image/' . $tweet->user->profile->image_path) }}">
+                                    <img src="{{ ($tweet->user->profile->image_path) }}">
                                 </div>
                                 
                                 <!--名前-->
@@ -76,7 +76,7 @@
                             <!--投稿した画像-->
                             @if ($tweet->image_path)
                                 <div class="tweet-image col-md-4 text-right mt-4">
-                                    <img src="{{ asset('storage/image/' . $tweet->image_path) }}">
+                                    <img src="{{ ($tweet->image_path) }}">
                                 </div>
                             @endif
                             

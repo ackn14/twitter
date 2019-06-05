@@ -17,7 +17,7 @@
                         <!--アイコン-->
                         <div class="image">
                             <a href="/profile?id={{ $tweet->user_id }}"></a>
-                            <img src="{{ asset('storage/image/' . $tweet->user->profile->image_path) }}">
+                            <img src="{{ ($tweet->user->profile->image_path) }}">
                         </div>
                         
                         <!--名前-->
@@ -45,7 +45,7 @@
                     <!--投稿した画像-->
                     @if ($tweet->image_path != null)
                         <div class="tweet-image col-md-4 text-right mt-4">
-                                <img src="{{ asset('storage/image/' . $tweet->image_path) }}">
+                                <img src="{{ ($tweet->image_path) }}">
                         </div>
                     @endif
                     
