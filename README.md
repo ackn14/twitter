@@ -23,8 +23,10 @@
 ・Webフレームワーク  
 →Laravel,Sass,Bootstrap4  
 ・開発インフラ  
-→Cloud9  
+→Cloud9,Git 
 ・デプロイ  
 →Heroku  
-・データベース  
+・開発データベース  
 →MySQL  
+・デプロイ時データベース
+→PostgreSQL
