@@ -1,0 +1,120 @@
+body {
+  color: #000;
+}
+
+//プロフィール情報
+.profile{
+  .image{
+    width: 150px;
+    height: 150px;
+    img{
+      width:100%;
+      height:auto;
+    }
+  }
+  
+  .name{
+      margin: 0 10px;
+      font-size: 1.2em;
+      font-weight: bold;
+  }
+  .twitterId{
+      font-size: 1.0em;
+  }
+  .introduction{
+      font-size: 1.0em;
+  }
+}
+
+.header {
+  .logo {
+      width: 120px;
+      height: 82px;
+  }
+}
+
+//タイムライン
+.posts {
+  
+  .post {
+    position: relative;
+    z-index: 1; /* 必要であればリンク要素の重なりのベース順序指定 */
+    
+    .date {
+      margin: 0 10px;
+      font-size: 0.9m;
+      color: #999999;
+    }
+    .name {
+      margin: 0 10px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .twitterId {
+      font-size: 1.0em;
+    }
+    
+    .image {
+      margin: 10px 10px;
+      float: left;
+      position: relative;
+      z-index: 1; /* 必要であればリンク要素の重なりのベース順序指定 */
+      img {
+        width: 100px;
+      }
+    }
+    .image a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-indent:-999px;
+        z-index: 2; /* 必要であればリンク要素の重なりのベース順序指定 */
+    }
+    .image:hover {
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+        transform: translateY(-0.1875em);
+    }
+    
+    
+    .tweet {
+      margin-left: 20px;
+      font-size: 1.0em;
+    }
+    
+    .tweet-image {
+      img {
+        width: 150px;
+        height:auto;
+      }
+    }
+    
+    
+  }
+  .post a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-indent:-999px;
+    z-index: 2; /* 必要であればリンク要素の重なりのベース順序指定 */
+  }
+  
+  .post:hover {
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+        transform: translateY(-0.1875em);
+  }
+  
+  
+}
+
+.login a{
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+.register a{
+  margin-right: 10px;
+  font-size: 1.2em;
+}

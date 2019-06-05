@@ -1,0 +1,11 @@
+/twitter/app/Http/Controllers/Auth/RegisterController.php
+新規でアカウント登録した際、同時にProfilesモデルにもレコードを自動生成する
+
+/twitter/app/Http/Controllers/Admin/TwitterController.php
+投稿された全ツイートを一覧形式で表示
+
+ログインしているかどうか検証
+@if(Auth::check()) 
+
+認証済みユーザーのユーザー情報を取得(name,email,passwordなど)
+Auth::user()
