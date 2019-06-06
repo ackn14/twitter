@@ -4,13 +4,13 @@
 <!--ツイート投稿フォーム-->
 <div class="container">
     <div class="row">
-        <img src="https://cdn.pixabay.com/photo/2019/05/24/12/19/lighthouse-4226137_960_720.jpg">
+        
             <div class="col-md-3">
                 <h3>プロフィール情報</h3>
                 @if(Auth::check()) 
                         <div class="profile">
                             <div class="image">
-                                <img src="{{ ($user->profile->image_path) }}">
+                                <img src="{{ asset('storage/image/' . $user->profile->image_path) }}">
                             </div>
                             
                             <div class="name">
