@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 //Authメソッド？ログインの時に使う
 use Illuminate\Support\Facades\Auth;
 
+use Storage;
 use App\Profiles;
 use App\User;
 
@@ -71,18 +72,43 @@ class ProfileController extends Controller
      {
         //現在ログイン認証しているユーザの情報を取得
         $user = Auth::user();
-        $profile_form = $request->all();
+        $form = $request->all();
+        
+        //removeアクション(画像削除リクエスト)があるか検証
+        //ある => 削除  ,  ない &  =>
+        if($request->remove == 'true'){
+            $form['image_path'] = null;
+        } elseif($request->file('image')){
+            
+            //↓↓画像のアップロード先がローカル環境の場合↓↓
+            // $path = $request->file('image')->store('public/image');
+            // $form['image_path'] = basename($path);
+            //↑↑画像のアップロード先がローカル環境の場合↑↑
+            
+            //画像のアップロード先がS3の場合
+            $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            $user->profile->image_path = Storage::disk('s3')->url($path);
+            
+        } else {
+            $form['image_path'] = $tweet->image_path;
+        }        
+        
+        
         
         //DBトランザクション
         // DB::beginTransanction();<=上手く機能せず
-        DB::transaction(function () use ($user,$profile_form){
+        DB::transaction(function () use ($user,$form){
             //Userテーブルの更新
-            $user->fill($profile_form)->save();
+            $user->fill($form)->save();
             //Profileテーブルに存在しない項目を削除
-            unset($profile_form['name']);
+            unset($form['name']);
+            unset($form['_token']);
+            unset($form['image']);        
+            unset($form['remove']);
+
             
             //Profileテーブルの更新
-            $user->profile->fill($profile_form)->save();
+            $user->profile->fill($form)->save();
         });
         // try{
         //     DB::commit();
@@ -90,7 +116,7 @@ class ProfileController extends Controller
         //     DB::rollback();
         // }
         
-        return redirect('profile');
+        return redirect('/');
      }
 }
 

@@ -8,8 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 //画像アップロード先をS3に指定
-// use Storage;
-use Illuminate\Support\Facades\Storage;
+use Storage;
 
 use App\Twitters;
 use App\User;
