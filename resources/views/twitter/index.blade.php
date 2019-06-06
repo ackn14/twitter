@@ -79,12 +79,12 @@
                                 <div class="text col-md-8">
                                     
                                     <!--アイコン-->
-                                    <a href="/twitter/show?id={{ $tweet->id }}">
-                                    <div class="image">
-                                        <a href=""></a>
-                                        <img src="{{ ($tweet->user->profile->image_path) }}">
-                                    </div>
-                                    </a>
+                                    <!--<a href="/twitter/show?id={{ $tweet->id }}">-->
+                                    <!--<div class="image">-->
+                                    <!--    <a href=""></a>-->
+                                    <!--    <img src="{{ ($tweet->user->profile->image_path) }}">-->
+                                    <!--</div>-->
+                                    <!--</a>-->
                                     
                                     <!--名前-->
                                     <span class="name">
