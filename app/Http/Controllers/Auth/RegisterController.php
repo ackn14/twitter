@@ -72,7 +72,7 @@ class RegisterController extends Controller
         ]);
         Profiles::create([
             'user_id' => $user->id,
-            'image_path' => "default.jpg",
+            'image_path' => "storage/image/default.jpg",
             'twitterId' => uniqid(),
             'introduction' => "よろしくおねがいします",
         ]);
