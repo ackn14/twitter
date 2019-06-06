@@ -10,7 +10,7 @@
                 @if(Auth::check()) 
                         <div class="profile">
                             <div class="image">
-                                <img src="{{ ($user->profile->image_path) }}">
+                                <img src="https://ackn14twitter.s3.us-east-2.amazonaws.com/default.jpg">
                             </div>
                             
                             <div class="name">
