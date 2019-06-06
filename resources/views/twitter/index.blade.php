@@ -4,7 +4,7 @@
 <!--ツイート投稿フォーム-->
 <div class="container">
     <div class="row">
-        
+        <img src="storage/image/default.jpg">
             <div class="col-md-3">
                 <h3>プロフィール情報</h3>
                 @if(Auth::check()) 
