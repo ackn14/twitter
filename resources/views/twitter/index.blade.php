@@ -10,7 +10,7 @@
                 @if(Auth::check()) 
                         <div class="profile">
                             <div class="image">
-                                <img src="https://ackn14twitter.s3.us-east-2.amazonaws.com/default.jpg">
+                                <img src="{{ ($user->profile->image_path) }}">
                             </div>
                             
                             <div class="name">
@@ -82,7 +82,7 @@
                                     <a href="/twitter/show?id={{ $tweet->id }}">
                                     <div class="image">
                                         <a href=""></a>
-                                        <img src="{{ ($tweet->user->profile->image_path) }}">
+                                        <img src="{{ asset('storage/image/' . $tweet->user->profile->image_path) }}">
                                     </div>
                                     </a>
                                     
@@ -112,7 +112,7 @@
                                 <!--投稿した画像-->
                                 @if ($tweet->image_path != null)
                                     <div class="tweet-image col-md-4 text-right mt-4">
-                                            <img src="{{ ($tweet->image_path) }}">
+                                            <img src="{{ ( $tweet->image_path) }}">
                                     </div>
                                 @endif
                             </div>
