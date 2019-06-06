@@ -29,8 +29,6 @@ class TwitterController extends Controller
         // }
         // return;
         // twitter/index.blade.php ファイルを渡している
-        $path = $request->file('image')->store('public/image');
-        $user->profile->image_path = basename($path);
         return view('twitter.index', ['tweets' => $tweets , 'user' => $user]);
     //
     }
