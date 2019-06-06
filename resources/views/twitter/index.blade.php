@@ -10,7 +10,7 @@
                 @if(Auth::check()) 
                         <div class="profile">
                             <div class="image">
-                                <img src="{{ asset('storage/image/' . $user->profile->image_path) }}">
+                                <img src="{{ ($user->profile->image_path) }}">
                             </div>
                             
                             <div class="name">

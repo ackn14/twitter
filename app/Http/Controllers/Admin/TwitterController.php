@@ -8,7 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 //画像アップロード先をS3に指定
-use Storage;
+// use Storage;
+use Illuminate\Support\Facades\Storage;
+
 use App\Twitters;
 use App\User;
 
@@ -33,17 +35,17 @@ class TwitterController extends Controller
             // //画像が保存されてるパス(ここではpublic/image)を保存
             // $twitter->image_path = basename($path);
             //↑↑画像のアップロード先がローカル環境の場合↑↑
-            
+            // dd(Storage::disk('s3'));
             //画像のアップロード先がS3の場合
             $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
             $twitter->image_path = Storage::disk('s3')->url($path);
-            
+            // dd(Storage);
         } else {
             $twitter->image_path = null;
         }
         unset($form['_token']);
         unset($form['image']);
-        dd($twitter->image_path);
+        // dd($twitter->image_path);
         //UserのidをTwittersのuser_idに代入
         $twitter->user_id = Auth::id();
         
