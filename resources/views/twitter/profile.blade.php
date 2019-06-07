@@ -49,7 +49,7 @@
                                 <div class="image">
                                     <a href="/profile?id={{ $tweet->id }}"></a>
                                     <img src="{{ asset('storage/image/' . $tweet->user->profile->image_path) }}">
-                                    <img src="/storage/image/default.jpg">
+                                    <img src="{{ '/' . $tweet->user->profile->image_path }}">
                                 </div>
                                 
                                 <!--名前-->
