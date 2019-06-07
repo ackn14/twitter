@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\HTML;
 use Illuminate\Support\Facades\Auth;
 
+use Storage;
 use App\Profiles;
 use App\Twitters;
 use App\User;
@@ -20,6 +21,10 @@ class TwitterController extends Controller
         //ツイートを作った順に並び替え
         $tweets = Twitters::orderBy('updated_at', 'desc')->get();
         $user = Auth::user();
+        
+        // $path = Storage::disk('local')->putFile('image/','Contents');
+        // $user->profile->image_path = Storage::disk('s3')->url($path);
+        
         // foreach ($tweet as $tweets) {
         //     dd($tweets->user);
         // }
