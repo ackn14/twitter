@@ -12,7 +12,7 @@ use Storage;
 
 use App\Twitters;
 use App\User;
-
+use Illuminate\Http\UploadedFile;
 use Carbon\Carbon;
 
 class TwitterController extends Controller
@@ -28,7 +28,7 @@ class TwitterController extends Controller
         
       // フォームから画像が送信されてきたら、保存して、$twitter->image_path に画像のパスを保存する
         if(isset($form['image'])){
-            
+            // dd($form['image']);
             //↓↓画像のアップロード先がローカル環境の場合↓↓
             // $path = $request->file('image')->store('public/image');
             // //画像が保存されてるパス(ここではpublic/image)を保存

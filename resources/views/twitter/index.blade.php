@@ -10,7 +10,11 @@
                 @if(Auth::check()) 
                         <div class="profile">
                             <div class="image">
-                                <img src="{{ ($user->profile->image_path) }}">
+                                @if($user->profile->image_path == null)
+                                    <img src="{{ '/default.jpg' . $user->profile->image_path }}">
+                                @else
+                                    <img src="{{ ($user->profile->image_path) }}">
+                                @endif
                             </div>
                             
                             <div class="name">
