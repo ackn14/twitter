@@ -9,27 +9,34 @@
                 <h3>プロフィール情報</h3>
                 @if(Auth::check()) 
                         <div class="profile">
+                            
                             <div class="image">
                                 @if($user->profile->image_path == null)
-                                    <img src="{{ '/default.jpg' . $user->profile->image_path }}">
+                                    <img src="default.jpg">
                                 @else
-                                    <img src="{{ ($user->profile->image_path) }}">
+                                    <img src="{{ $user->profile->image_path }}">
                                 @endif
                             </div>
                             
                             <div class="name">
                                 {{ str_limit($user->name, 20)}}
                             </div>
+                            
                             <div class="twitterId">
                                 {{ str_limit($user->profile->twitterId, 50) }}
                             </div>
+                            
                             <div class="introduction">
                                 {{ str_limit($user->profile->introduction, 1500)}}
                             </div>
+                            
+                            <div>
                                 @if ($user->id == Auth::user()->id )
                                     <a href="/admin/profile/edit?id={{ Auth::user()->id }}"
                                         class="btn btn-primary">プロフィールを編集</a>
                                 @endif
+                            </div>
+                            
                         </div>
                 @else
                     <div>
@@ -43,7 +50,8 @@
             <div class="col-md-9 mx-auto">
                 <h3>ツイート投稿フォーム</h3>
                 <hr color="#c0c0c0">
-                <form action="{{action('Admin\TwitterController@create')}}"method="post"enctype="multipart/form-data" >
+                <form action="{{ action('Admin\TwitterController@create') }}"
+                                method="post" enctype="multipart/form-data" >
                     
                     @if(count($errors)>0)
                         <ul>
@@ -86,7 +94,11 @@
                                     <a href="/twitter/show?id={{ $tweet->id }}">
                                     <div class="image">
                                         <a href=""></a>
-                                        <img src="{{ ($tweet->user->profile->image_path) }}">
+                                        @if($tweet->user->profile->image_path == null)
+                                            <img src="default.jpg">
+                                        @else
+                                            <img src="{{ $tweet->user->profile->image_path }}">
+                                        @endif
                                     </div>
                                     </a>
                                     
@@ -116,7 +128,7 @@
                                 <!--投稿した画像-->
                                 @if ($tweet->image_path != null)
                                     <div class="tweet-image col-md-4 text-right mt-4">
-                                            <img src="{{ ( $tweet->image_path) }}">
+                                            <img src="{{ $tweet->image_path }}">
                                     </div>
                                 @endif
                             </div>

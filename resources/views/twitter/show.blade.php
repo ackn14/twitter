@@ -17,7 +17,11 @@
                         <!--アイコン-->
                         <div class="image">
                             <a href="/profile?id={{ $tweet->user_id }}"></a>
-                            <img src="{{ ($tweet->user->profile->image_path) }}">
+                            @if($tweet->user->profile->image_path == null)
+                                <img src="default.jpg">
+                            @else
+                                <img src="{{ $tweet->user->profile->image_path }}">
+                            @endif
                         </div>
                         
                         <!--名前-->
@@ -45,7 +49,7 @@
                     <!--投稿した画像-->
                     @if ($tweet->image_path != null)
                         <div class="tweet-image col-md-4 text-right mt-4">
-                                <img src="{{ ($tweet->image_path) }}">
+                                <img src="{{ $tweet->image_path }}">
                         </div>
                     @endif
                     
@@ -55,16 +59,16 @@
             
             
             <!--編集と削除ボタン-->
-            <div class="col-md-4 mx-auto">
+            <div class="col-md-6 mx-auto">
                 @if(Auth::check()) 
                     @if ($tweet->user_id ==  Auth::user()->id )
                     
-                        <div class="col-md-4 float-left mx-auto">
+                        <div class="col-md-6 float-left mx-auto">
                             <a href="{{ action('Admin\TwitterController@edit', ['id' => $tweet->id]) }}"
                                 class="btn btn-primary">編集</a>
                         </div>
                         
-                        <div class="col-md-4 float-right mx-auto">
+                        <div class="col-md-6 float-right mx-auto">
                             <a href="{{ action('Admin\TwitterController@delete', ['id' => $tweet->id]) }}"
                                 class="btn btn-primary">削除</a>
                         </div>

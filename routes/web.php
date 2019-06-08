@@ -28,5 +28,5 @@ Route::group(['prefix'=>'admin'],function(){
 Auth::routes();
 
 Route::get('/','TwitterController@index');
-Route::get('/profile','Admin\ProfileController@profile');
+Route::get('/profile','TwitterController@profile');
 Route::get('/twitter/show','TwitterController@show');

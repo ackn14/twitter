@@ -43,7 +43,17 @@
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="image">
                             <div class="form-text text-info">
-                                設定中: {{ $user->profile->image_path }}
+                                設定中: 
+                                @if($user->profile->image_path == null)
+                                    {{ "デフォルト画像" }}
+                                @else
+                                    {{ $user->profile->image_path }}
+                                @endif
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
+                                </label>
                             </div>
                         </div>
                     </div>

@@ -8,19 +8,27 @@
             
             <h3>プロフィール情報</h3>
             <div class="profile">
+                
                 <div class="image">
-                    <img src="{{ ($user->profile->image_path) }}">
+                    @if($user->profile->image_path == null)
+                        <img src="default.jpg">
+                    @else
+                        <img src="{{ $user->profile->image_path }}">
+                    @endif
                 </div>
                 
                 <div class="name">
                     {{ str_limit($user->name, 20)}}
                 </div>
+                
                 <div class="twitterId">
                     {{ str_limit($user->profile->twitterId, 50) }}
                 </div>
+                
                 <div class="introduction">
                     {{ str_limit($user->profile->introduction, 1500)}}
                 </div>
+                
                 @if(Auth::check()) 
                     @if ($user->id == Auth::user()->id )
                         <a href="/admin/profile/edit?id={{ Auth::user()->id }}"
@@ -30,7 +38,9 @@
             </div>
             
         </div>
-
+        
+        
+        
         <div class="posts col-md-9">
         <!--タイムライン-->
         <h3>過去のツイート一覧</h3>
@@ -48,7 +58,11 @@
                                 <!--アイコン-->
                                 <div class="image">
                                     <a href="/profile?id={{ $tweet->id }}"></a>
-                                    <img src="{{ asset('storage/image/' . $tweet->user->profile->image_path) }}">
+                                    @if($tweet->user->profile->image_path == null)
+                                        <img src="default.jpg">
+                                    @else
+                                        <img src="{{ ($tweet->user->profile->image_path) }}">
+                                    @endif
                                 </div>
                                 
                                 <!--名前-->
@@ -76,7 +90,7 @@
                             <!--投稿した画像-->
                             @if ($tweet->image_path)
                                 <div class="tweet-image col-md-4 text-right mt-4">
-                                    <img src="{{ asset('storage/image/' . $tweet->image_path) }}">
+                                    <img src="{{ $tweet->image_path }}">
                                 </div>
                             @endif
                             
@@ -89,6 +103,7 @@
                 <p>まだ投稿がありません</p>
             @endif
         </div>
+        
     </div>
 </div>
 
