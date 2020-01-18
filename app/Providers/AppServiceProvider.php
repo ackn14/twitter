@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
+     * 通信プロトコルをHTTPSに変更する
      */
     public function boot()
     {
